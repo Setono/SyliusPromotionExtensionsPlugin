@@ -26,9 +26,9 @@ final class HasNFromTaxonRuleChecker implements RuleCheckerInterface
             return false;
         }
 
-        $amount = $configuration['quantity'];
+        $quantity = $configuration['quantity'];
 
-        if (0 === $amount) {
+        if (0 === $quantity) {
             return false;
         }
 
@@ -51,7 +51,7 @@ final class HasNFromTaxonRuleChecker implements RuleCheckerInterface
         }
 
         foreach ($taxonCounts as $taxonCount) {
-            if ($taxonCount < $amount) {
+            if ($taxonCount < $quantity) {
                 return false;
             }
         }
