@@ -32,7 +32,7 @@ final class HasNFromTaxonConfigurationType extends AbstractType
     {
         $builder
             ->add('taxons', TaxonAutocompleteChoiceType::class, [
-                'label' => 'sylius.form.promotion_rule.has_taxon.taxons',
+                'label' => 'setono_sylius_promotion_extensions.form.promotion_rule.has_n_from_taxon.taxons',
                 'multiple' => true,
             ])
             ->add('quantity', IntegerType::class, [

@@ -5,4 +5,5 @@ setono_sylius_promotion_extensions:
         promotion_rule:
             has_at_least_n_from_taxons: Has at least n from taxons
             has_n_from_taxon:
+                taxons: Taxons
                 quantity: Quantity
