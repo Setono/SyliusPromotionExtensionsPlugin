@@ -37,6 +37,14 @@ return [
 ];
 ```
 
+## Promotion rule checkers
+### Has at least n from taxons
+Will return true if the cart contains n or more products that have the given taxons.
+
+## Promotion actions
+### Unit fixed price
+You set a price that all matching products will cost no matter their original price.
+
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-promotion-extensions-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/Setono/SyliusPromotionExtensionsPlugin/master.svg?style=flat-square
