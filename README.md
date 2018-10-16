@@ -1,86 +1,50 @@
-<p align="center">
-    <a href="https://sylius.com" target="_blank">
-        <img src="https://demo.sylius.com/assets/shop/img/logo.png" />
-    </a>
-</p>
+# Sylius Promotion Extensions Plugin
 
-<h1 align="center">Plugin Skeleton</h1>
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE)
+[![Build Status][ico-travis]][link-travis]
+[![Quality Score][ico-code-quality]][link-code-quality]
 
-<p align="center">Skeleton for starting Sylius plugins.</p>
+Adds common promotion rules and actions for you to use in Sylius.
 
 ## Installation
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
+### Step 1: Download the plugin
 
-2. From the plugin skeleton root directory, run the following commands:
+Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
 
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && bin/console assets:install public -e test)
+```bash
+$ composer require setono/sylius-promotion-extensions-plugin
+```
+
+This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
+
+
+### Step 2: Enable the plugin
+
+Then, enable the plugin by adding it to the list of registered plugins/bundles
+in the `config/bundles.php` file of your project:
+
+```php
+<?php
+
+return [
+    // ...
     
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
-    ```
-
-## Usage
-
-### Running plugin tests
-
-  - PHPUnit
-
-    ```bash
-    $ vendor/bin/phpunit
-    ```
-
-  - PHPSpec
-
-    ```bash
-    $ vendor/bin/phpspec run
-    ```
-
-  - Behat (non-JS scenarios)
-
-    ```bash
-    $ vendor/bin/behat --tags="~@javascript"
-    ```
-
-  - Behat (JS scenarios)
- 
-    1. Download [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
+    Setono\SyliusPromotionExtensionsPlugin\SetonoSyliusPromotionExtensionsPlugin::class => ['all' => true],
     
-    2. Download [Selenium Standalone Server](https://www.seleniumhq.org/download/).
-    
-    2. Run Selenium server with previously downloaded Chromedriver:
-    
-        ```bash
-        $ java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone.jar
-        ```
-        
-    3. Run test application's webserver on `localhost:8080`:
-    
-        ```bash
-        $ (cd tests/Application && bin/console server:run localhost:8080 -d public -e test)
-        ```
-    
-    4. Run Behat:
-    
-        ```bash
-        $ vendor/bin/behat --tags="@javascript"
-        ```
+    // ...
+];
+```
 
-### Opening Sylius with your plugin
+It is **IMPORTANT** to add the plugin before the grid bundle else you will get a an exception saying `You have requested a non-existent parameter "setono_sylius_redirect.model.redirect.class".`
 
-- Using `test` environment:
+[ico-version]: https://img.shields.io/packagist/v/setono/sylius-promotion-extensions-plugin.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Setono/SyliusPromotionExtensionsPlugin/master.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusPromotionExtensionsPlugin.svg?style=flat-square
 
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e test)
-    $ (cd tests/Application && bin/console server:run -d public -e test)
-    ```
-    
-- Using `dev` environment:
+[link-packagist]: https://packagist.org/packages/setono/sylius-promotion-extensions-plugin
+[link-travis]: https://travis-ci.org/Setono/SyliusPromotionExtensionsPlugin
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusPromotionExtensionsPlugin
 
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
-    $ (cd tests/Application && bin/console server:run -d public -e dev)
-    ```
