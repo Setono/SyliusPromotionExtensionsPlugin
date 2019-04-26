@@ -32,7 +32,7 @@ final class HasNFromTaxonRuleCheckerSpec extends ObjectBehavior
     ): void {
         $configuration = [
             'taxons' => ['swords'],
-            'quantity' => 2
+            'quantity' => 2,
         ];
 
         $swords->getCode()->willReturn('swords');

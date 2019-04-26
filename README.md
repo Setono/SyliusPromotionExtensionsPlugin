@@ -1,6 +1,7 @@
 # Sylius Promotion Extensions Plugin
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Latest Version][ico-version]][link-packagist]
+[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
@@ -45,12 +46,12 @@ Will return true if the cart contains n or more products that have the given tax
 ### Unit fixed price
 You set a price that all matching products will cost no matter their original price.
 
-[ico-version]: https://img.shields.io/packagist/v/setono/sylius-promotion-extensions-plugin.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/Setono/SyliusPromotionExtensionsPlugin/master.svg?style=flat-square
+[ico-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/stable
+[ico-unstable-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/unstable
+[ico-license]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/license
+[ico-travis]: https://travis-ci.org/Setono/SyliusPromotionExtensionsPlugin.svg?branch=master
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusPromotionExtensionsPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-promotion-extensions-plugin
 [link-travis]: https://travis-ci.org/Setono/SyliusPromotionExtensionsPlugin
 [link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusPromotionExtensionsPlugin
-

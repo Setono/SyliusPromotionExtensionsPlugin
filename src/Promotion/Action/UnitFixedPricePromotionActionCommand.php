@@ -63,7 +63,7 @@ final class UnitFixedPricePromotionActionCommand extends UnitDiscountPromotionAc
 
         $channel = $subject->getChannel();
 
-        if(null === $channel) {
+        if (null === $channel) {
             return false;
         }
 

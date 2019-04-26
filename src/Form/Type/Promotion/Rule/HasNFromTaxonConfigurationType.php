@@ -25,9 +25,6 @@ final class HasNFromTaxonConfigurationType extends AbstractType
         $this->taxonsToCodesTransformer = $taxonsToCodesTransformer;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -43,9 +40,6 @@ final class HasNFromTaxonConfigurationType extends AbstractType
         $builder->get('taxons')->addModelTransformer($this->taxonsToCodesTransformer);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'setono_sylius_promotion_extensions_promotion_rule_has_n_from_taxon_configuration';
