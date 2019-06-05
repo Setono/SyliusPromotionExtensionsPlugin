@@ -11,6 +11,9 @@
         "php": "^7.2",
         "sylius/sylius": "^1.3"
     },
+    "conflict": {
+        "symfony/doctrine-bridge": "4.3.0"
+    },
     "require-dev": {
         "localheinz/composer-normalize": "^1.1",
         "phpspec/phpspec": "^5.0",
@@ -28,9 +31,6 @@
         "symfony/intl": "^3.4 || ^4.1",
         "symfony/web-profiler-bundle": "^3.4 || ^4.1",
         "symfony/web-server-bundle": "^3.4 || ^4.1"
-    },
-    "conflict": {
-        "symfony/doctrine-bridge": "4.3.0"
     },
     "config": {
         "sort-packages": true
