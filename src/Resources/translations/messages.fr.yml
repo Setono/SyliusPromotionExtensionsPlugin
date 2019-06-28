@@ -1,0 +1,9 @@
+setono_sylius_promotion_extensions:
+    form:
+        promotion_action:
+            item_fixed_price: Prix fixé par produit
+        promotion_rule:
+            has_at_least_n_from_taxons: A au moins n produit(s) de certaines catégories
+            has_n_from_taxon:
+                taxons: Catégories
+                quantity: Quantités
