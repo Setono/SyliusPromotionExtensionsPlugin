@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "localheinz/composer-normalize": "^1.1",
-        "phpspec/phpspec": "^5.0",
+        "phpspec/phpspec": "^6.1",
         "phpstan/phpstan-doctrine": "^0.10",
         "phpstan/phpstan-shim": "^0.10",
         "phpstan/phpstan-symfony": "^0.10",
