@@ -15,7 +15,7 @@
         "symfony/doctrine-bridge": "4.3.0"
     },
     "require-dev": {
-        "localheinz/composer-normalize": "^1.1",
+        "localheinz/composer-normalize": "^2.2",
         "phpspec/phpspec": "^5.0",
         "phpstan/phpstan-doctrine": "^0.10",
         "phpstan/phpstan-shim": "^0.10",
