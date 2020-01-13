@@ -21,7 +21,7 @@
         "phpstan/phpstan-shim": "^0.10",
         "phpstan/phpstan-symfony": "^0.10",
         "phpstan/phpstan-webmozart-assert": "^0.10",
-        "phpunit/phpunit": "^7.0",
+        "phpunit/phpunit": "^8.5",
         "roave/security-advisories": "dev-master",
         "sensiolabs/security-checker": "^6.0",
         "sylius-labs/coding-standard": "^3.1",
