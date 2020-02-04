@@ -3,7 +3,7 @@
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-github-actions]][link-github-actions]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 Adds common promotion rules and actions for you to use in Sylius.
@@ -49,9 +49,9 @@ You set a price that all matching products will cost no matter their original pr
 [ico-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/license
-[ico-travis]: https://travis-ci.org/Setono/SyliusPromotionExtensionsPlugin.svg?branch=master
+[ico-github-actions]: https://github.com/Setono/SyliusPromotionExtensionsPlugin/workflows/build/badge.svg
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusPromotionExtensionsPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-promotion-extensions-plugin
-[link-travis]: https://travis-ci.org/Setono/SyliusPromotionExtensionsPlugin
+[link-github-actions]: https://github.com/Setono/SyliusPromotionExtensionsPlugin/actions
 [link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusPromotionExtensionsPlugin
