@@ -16,8 +16,6 @@ final class HasNFromTaxonRuleChecker implements RuleCheckerInterface
     public const TYPE = 'has_n_from_taxon';
 
     /**
-     * {@inheritdoc}
-     *
      * @throws UnsupportedTypeException
      */
     public function isEligible(PromotionSubjectInterface $subject, array $configuration): bool
@@ -59,12 +57,6 @@ final class HasNFromTaxonRuleChecker implements RuleCheckerInterface
         return true;
     }
 
-    /**
-     * @param ProductInterface $product
-     * @param string $taxon
-     *
-     * @return bool
-     */
     private function productHasTaxon(ProductInterface $product, string $taxon): bool
     {
         foreach ($product->getTaxons() as $item) {

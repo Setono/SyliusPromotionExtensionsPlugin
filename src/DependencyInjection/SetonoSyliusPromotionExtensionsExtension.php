@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\DependencyInjection;
 
+use Exception;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -12,9 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 final class SetonoSyliusPromotionExtensionsExtension extends Extension
 {
     /**
-     * {@inheritdoc}
-     *
-     * @throws \Exception
+     * @throws Exception
      */
     public function load(array $config, ContainerBuilder $container): void
     {

@@ -51,26 +51,6 @@ final class HasNFromTaxonRuleCheckerSpec extends ObjectBehavior
         $this->isEligible($subject, $configuration)->shouldReturn(true);
     }
 
-    /*
-
-    function it_recognizes_a_subject_as_eligible_if_a_product_taxon_is_matched_to_one_of_required_taxons(
-        OrderInterface $subject,
-        OrderItemInterface $item,
-        ProductInterface $bastardSword,
-        TaxonInterface $swords
-    ): void {
-        $configuration = ['taxons' => ['swords', 'axes']];
-
-        $swords->getCode()->willReturn('swords');
-        $bastardSword->getTaxons()->willReturn(new ArrayCollection([$swords->getWrappedObject()]));
-        $item->getProduct()->willReturn($bastardSword);
-        $subject->getItems()->willReturn(new ArrayCollection([$item->getWrappedObject()]));
-
-        $this->isEligible($subject, $configuration)->shouldReturn(true);
-    }
-
-    */
-
     function it_recognizes_a_subject_as_not_eligible_if_a_product_taxon_is_not_matched(
         OrderInterface $subject,
         OrderItemInterface $item,

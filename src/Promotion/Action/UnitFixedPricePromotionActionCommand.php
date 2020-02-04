@@ -18,27 +18,15 @@ final class UnitFixedPricePromotionActionCommand extends UnitDiscountPromotionAc
 {
     public const TYPE = 'unit_fixed_price';
 
-    /**
-     * @var FilterInterface
-     */
+    /** @var FilterInterface */
     private $priceRangeFilter;
 
-    /**
-     * @var FilterInterface
-     */
+    /** @var FilterInterface */
     private $taxonFilter;
 
-    /**
-     * @var FilterInterface
-     */
+    /** @var FilterInterface */
     private $productFilter;
 
-    /**
-     * @param FactoryInterface $adjustmentFactory
-     * @param FilterInterface $priceRangeFilter
-     * @param FilterInterface $taxonFilter
-     * @param FilterInterface $productFilter
-     */
     public function __construct(
         FactoryInterface $adjustmentFactory,
         FilterInterface $priceRangeFilter,
@@ -52,9 +40,6 @@ final class UnitFixedPricePromotionActionCommand extends UnitDiscountPromotionAc
         $this->productFilter = $productFilter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion): bool
     {
         if (!$subject instanceof OrderInterface) {
@@ -95,11 +80,6 @@ final class UnitFixedPricePromotionActionCommand extends UnitDiscountPromotionAc
         return true;
     }
 
-    /**
-     * @param OrderItemInterface $item
-     * @param int $amount
-     * @param PromotionInterface $promotion
-     */
     private function setUnitsAdjustments(OrderItemInterface $item, int $amount, PromotionInterface $promotion): void
     {
         $amount = $item->getUnitPrice() - $amount;
