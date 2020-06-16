@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Promotion\Action;
 
-use Doctrine\Common\Collections\Collection;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
-use Sylius\Component\Core\Distributor\ProportionalIntegerDistributorInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Promotion\Action\UnitDiscountPromotionActionCommand;
-use Sylius\Component\Core\Promotion\Applicator\UnitsPromotionAdjustmentsApplicatorInterface;
 use Sylius\Component\Core\Promotion\Filter\FilterInterface;
 use Sylius\Component\Promotion\Model\PromotionInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
@@ -34,16 +31,12 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     /** @var MostExpensiveFirstDistributorInterface */
     private $distributor;
 
-    /** @var UnitsPromotionAdjustmentsApplicatorInterface */
-    private $unitsPromotionAdjustmentsApplicator;
-
     public function __construct(
         FactoryInterface $adjustmentFactory,
         FilterInterface $priceRangeFilter,
         FilterInterface $taxonFilter,
         FilterInterface $productFilter,
-        MostExpensiveFirstDistributorInterface $distributor,
-        UnitsPromotionAdjustmentsApplicatorInterface $unitsPromotionAdjustmentsApplicator
+        MostExpensiveFirstDistributorInterface $distributor
     ) {
         parent::__construct($adjustmentFactory);
 
@@ -51,7 +44,6 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         $this->taxonFilter = $taxonFilter;
         $this->productFilter = $productFilter;
         $this->distributor = $distributor;
-        $this->unitsPromotionAdjustmentsApplicator = $unitsPromotionAdjustmentsApplicator;
     }
 
     public function execute(PromotionSubjectInterface $subject, array $configuration, PromotionInterface $promotion): bool
@@ -70,14 +62,11 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             return false;
         }
 
+        if (empty($configuration[$channelCode]['amount']) || empty($configuration[$channelCode]['itemsAmount'])) {
+            return false;
+        }
         $amount = $configuration[$channelCode]['amount'];
-        if (0 === $amount) {
-            return false;
-        }
         $itemsAmount = $configuration[$channelCode]['itemsAmount'];
-        if (0 === $itemsAmount) {
-            return false;
-        }
 
         $filteredItems = $this->getFilteredItems($subject, $configuration[$channelCode]);
         if (empty($filteredItems)) {
@@ -87,7 +76,6 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         $amount = $this->getExpectedTotal($amount, $itemsAmount, $filteredItems);
         // If the items total is already lower than expected discounted amount, return there
         $currentTotal = $this->getEligibleItemsTotal($filteredItems);
-        dump($amount, $currentTotal);
         if ($currentTotal <= $amount) {
             return false;
         }
@@ -99,16 +87,11 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             $unitsTotals[] = $unit->getTotal();
         }
 
-        dump($units);
-        dump($unitsTotals);
         $splitPromotion = $this->distributor->distribute($unitsTotals, $discountAmount);
-        dump($splitPromotion);
 
         foreach ($units as $key => $unit) {
             $this->setUnitAdjustments($unit, $splitPromotion[$key], $promotion);
         }
-
-        dump($subject);
 
         return true;
     }
@@ -180,6 +163,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         \uasort($units, function (OrderItemUnitInterface $a, OrderItemUnitInterface $b): int {
             return $b->getTotal() <=> $a->getTotal();
         });
+        /** @var OrderItemUnitInterface[] $units */
         $units = \array_values($units);
 
         return $units;

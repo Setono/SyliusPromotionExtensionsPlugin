@@ -18,7 +18,6 @@
             <argument type="service" id="sylius.promotion_filter.taxon" />
             <argument type="service" id="sylius.promotion_filter.product" />
             <argument type="service" id="setono_sylius_promotion_extensions.distributor.most_expensive_first" />
-            <argument type="service" id="sylius.promotion.units_promotion_adjustments_applicator" />
             <tag name="sylius.promotion_action" type="units_fixed_price"
                  label="setono_sylius_promotion_extensions.form.promotion_action.items_fixed_price"
                  form-type="Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action\ChannelBasedUnitsFixedDiscountConfigurationType"
