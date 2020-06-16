@@ -30,7 +30,7 @@ final class MostExpensiveFirstDistributor implements MostExpensiveFirstDistribut
         $distributedAmounts = [];
         foreach ($integers as $key => $integer) {
             if (isset($applicableIntegers[$key])) {
-                $distributedAmounts[$key] = (int)\floor(\abs($totalWithPromotion - $integer));
+                $distributedAmounts[$key] = (int) \floor(\abs($totalWithPromotion - $integer));
             } else {
                 $distributedAmounts[$key] = 0;
             }

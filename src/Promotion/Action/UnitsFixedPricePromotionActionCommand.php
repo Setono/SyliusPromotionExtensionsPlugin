@@ -106,9 +106,6 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     }
 
     /**
-     * @param OrderInterface $order
-     * @param array          $configuration
-     *
      * @return iterable|OrderItemInterface[]
      */
     private function getFilteredItems(OrderInterface $order, array $configuration): iterable
@@ -125,7 +122,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     private function getExpectedTotal(int $expectedAmount, int $itemsAmount, iterable $items): int
     {
         // Since the promotion is registered as x products for y amount, calculate price per item
-        $amountPerItem = (int)\round($expectedAmount / $itemsAmount);
+        $amountPerItem = (int) \round($expectedAmount / $itemsAmount);
 
         // Return the price per item * items amount
         $units = [];
@@ -133,6 +130,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         foreach ($items as $item) {
             $units = \array_merge($units, $item->getUnits()->toArray());
         }
+
         return $amountPerItem * \count($units);
     }
 
@@ -148,8 +146,6 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     }
 
     /**
-     * @param array $items
-     *
      * @return array|OrderItemUnitInterface[]
      */
     private function getUnits(array $items): array
