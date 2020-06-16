@@ -19,6 +19,7 @@ final class ChannelBasedUnitsFixedDiscountConfigurationType extends AbstractType
             'entry_options' => function (ChannelInterface $channel) {
                 /** @var CurrencyInterface $currency */
                 $currency = $channel->getBaseCurrency();
+
                 return [
                     'label' => $channel->getName(),
                     'currency' => $currency->getCode(),
