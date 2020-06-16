@@ -146,9 +146,11 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     }
 
     /**
+     * @param iterable|OrderItemInterface[] $items
+     *
      * @return array|OrderItemUnitInterface[]
      */
-    private function getUnits(array $items): array
+    private function getUnits(iterable $items): array
     {
         $units = [];
         /** @var OrderItemInterface $item */

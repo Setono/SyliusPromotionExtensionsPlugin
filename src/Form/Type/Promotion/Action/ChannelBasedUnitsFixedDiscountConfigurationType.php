@@ -6,6 +6,7 @@ namespace Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action;
 
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Currency\Model\CurrencyInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,9 +17,11 @@ final class ChannelBasedUnitsFixedDiscountConfigurationType extends AbstractType
         $resolver->setDefaults([
             'entry_type' => UnitsFixedDiscountConfigurationType::class,
             'entry_options' => function (ChannelInterface $channel) {
+                /** @var CurrencyInterface $currency */
+                $currency = $channel->getBaseCurrency();
                 return [
                     'label' => $channel->getName(),
-                    'currency' => $channel->getBaseCurrency()->getCode(),
+                    'currency' => $currency->getCode(),
                 ];
             },
         ]);
