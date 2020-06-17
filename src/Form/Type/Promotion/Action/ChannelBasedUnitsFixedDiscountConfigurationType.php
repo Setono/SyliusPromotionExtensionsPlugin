@@ -16,7 +16,7 @@ final class ChannelBasedUnitsFixedDiscountConfigurationType extends AbstractType
     {
         $resolver->setDefaults([
             'entry_type' => UnitsFixedDiscountConfigurationType::class,
-            'entry_options' => function (ChannelInterface $channel) {
+            'entry_options' => function (ChannelInterface $channel): array {
                 /** @var CurrencyInterface $currency */
                 $currency = $channel->getBaseCurrency();
 

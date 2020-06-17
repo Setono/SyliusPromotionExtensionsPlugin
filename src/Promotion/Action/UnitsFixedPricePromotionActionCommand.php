@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Promotion\Action;
 
+use function array_key_exists;
+use function count;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
@@ -62,14 +64,20 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             return false;
         }
 
-        if (empty($configuration[$channelCode]['amount']) || empty($configuration[$channelCode]['itemsAmount'])) {
+        if (!array_key_exists('amount', $configuration[$channelCode])
+            || null === $configuration[$channelCode]['amount']
+            || 0 === $configuration[$channelCode]['amount']
+            || !array_key_exists('itemsAmount', $configuration[$channelCode])
+            || null === $configuration[$channelCode]['itemsAmount']
+            || 0 === $configuration[$channelCode]['itemsAmount']
+        ) {
             return false;
         }
         $amount = $configuration[$channelCode]['amount'];
         $itemsAmount = $configuration[$channelCode]['itemsAmount'];
 
         $filteredItems = $this->getFilteredItems($subject, $configuration[$channelCode]);
-        if (empty($filteredItems)) {
+        if (0 === count($filteredItems)) {
             return false;
         }
 
@@ -97,9 +105,9 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     }
 
     /**
-     * @return iterable|OrderItemInterface[]
+     * @return array|OrderItemInterface[]
      */
-    private function getFilteredItems(OrderInterface $order, array $configuration): iterable
+    private function getFilteredItems(OrderInterface $order, array $configuration): array
     {
         $filteredItems = $this->priceRangeFilter->filter(
             $order->getItems()->toArray(),
@@ -125,7 +133,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             $units = \array_merge($units, $item->getUnits()->toArray());
         }
 
-        return $amountPerItem * \count($units);
+        return $amountPerItem * count($units);
     }
 
     /**
