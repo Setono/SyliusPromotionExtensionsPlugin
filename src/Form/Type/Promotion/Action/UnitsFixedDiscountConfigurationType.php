@@ -45,9 +45,6 @@ final class UnitsFixedDiscountConfigurationType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'setono_sylius_promotion_extensions_promotion_action_units_fixed_discount_configuration';

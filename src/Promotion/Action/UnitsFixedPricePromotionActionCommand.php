@@ -73,14 +73,14 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             return false;
         }
 
-        $amount = $this->getExpectedTotal($amount, $itemsAmount, $filteredItems);
-        // If the items total is already lower than expected discounted amount, return there
+        $expectedTotal = $this->getExpectedTotal($amount, $itemsAmount, $filteredItems);
         $currentTotal = $this->getEligibleItemsTotal($filteredItems);
-        if ($currentTotal <= $amount) {
+        // If the items total is already lower than expected discounted amount, return there
+        if ($currentTotal <= $expectedTotal) {
             return false;
         }
 
-        $discountAmount = $currentTotal - $amount;
+        $discountAmount = $currentTotal - $expectedTotal;
         $units = $this->getUnits($filteredItems);
         $unitsTotals = [];
         foreach ($units as $unit) {
@@ -90,19 +90,10 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         $splitPromotion = $this->distributor->distribute($unitsTotals, $discountAmount);
 
         foreach ($units as $key => $unit) {
-            $this->setUnitAdjustments($unit, $splitPromotion[$key], $promotion);
+            $this->addAdjustmentToUnit($unit, $splitPromotion[$key], $promotion);
         }
 
         return true;
-    }
-
-    private function setUnitAdjustments(OrderItemUnitInterface $unit, int $amount, PromotionInterface $promotion): void
-    {
-        $this->addAdjustmentToUnit(
-            $unit,
-            min($unit->getTotal(), $amount),
-            $promotion
-        );
     }
 
     /**
@@ -119,6 +110,9 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         return $this->productFilter->filter($filteredItems, $configuration);
     }
 
+    /**
+     * Returns the expected total for items. If we have 2 for $200, and 6 item units, we expect $600 as a result here
+     */
     private function getExpectedTotal(int $expectedAmount, int $itemsAmount, iterable $items): int
     {
         // Since the promotion is registered as x products for y amount, calculate price per item
@@ -134,10 +128,12 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         return $amountPerItem * \count($units);
     }
 
+    /**
+     * @param iterable|OrderItemInterface[] $eligibleItems
+     */
     private function getEligibleItemsTotal(iterable $eligibleItems): int
     {
         $itemsTotal = 0;
-        /** @var OrderItemInterface $item */
         foreach ($eligibleItems as $item) {
             $itemsTotal += $item->getTotal();
         }
@@ -153,7 +149,6 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     private function getUnits(iterable $items): array
     {
         $units = [];
-        /** @var OrderItemInterface $item */
         foreach ($items as $item) {
             $units = \array_merge($units, $item->getUnits()->toArray());
         }
