@@ -69,7 +69,7 @@ final class UnitFixedPricePromotionActionCommand extends UnitDiscountPromotionAc
         $filteredItems = $this->taxonFilter->filter($filteredItems, $configuration[$channelCode]);
         $filteredItems = $this->productFilter->filter($filteredItems, $configuration[$channelCode]);
 
-        if (empty($filteredItems)) {
+        if (count($filteredItems) === 0) {
             return false;
         }
 
