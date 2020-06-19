@@ -65,16 +65,15 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
         }
 
         if (!array_key_exists('amount', $configuration[$channelCode])
-            || null === $configuration[$channelCode]['amount']
-            || 0 === $configuration[$channelCode]['amount']
             || !array_key_exists('itemsAmount', $configuration[$channelCode])
-            || null === $configuration[$channelCode]['itemsAmount']
-            || 0 === $configuration[$channelCode]['itemsAmount']
         ) {
             return false;
         }
-        $amount = $configuration[$channelCode]['amount'];
-        $itemsAmount = $configuration[$channelCode]['itemsAmount'];
+        $amount = $configuration[$channelCode]['amount'] ?? 0;
+        $itemsAmount = $configuration[$channelCode]['itemsAmount'] ?? 0;
+        if (0 === $amount || 0 === $itemsAmount) {
+            return false;
+        }
 
         $filteredItems = $this->getFilteredItems($subject, $configuration[$channelCode]);
         if (0 === count($filteredItems)) {

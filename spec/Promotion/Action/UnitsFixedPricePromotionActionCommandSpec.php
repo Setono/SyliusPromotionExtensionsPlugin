@@ -19,6 +19,7 @@ use Sylius\Component\Core\Promotion\Filter\FilterInterface;
 use Sylius\Component\Order\Model\Adjustment;
 use Sylius\Component\Promotion\Action\PromotionActionCommandInterface;
 use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
+use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class UnitsFixedPricePromotionActionCommandSpec extends ObjectBehavior
@@ -48,7 +49,7 @@ final class UnitsFixedPricePromotionActionCommandSpec extends ObjectBehavior
         PromotionSubjectInterface $subject,
         PromotionInterface $promotion
     ): void {
-        $this->shouldThrow('\Sylius\Component\Resource\Exception\UnexpectedTypeException')->during('execute', [$subject, [], $promotion]);
+        $this->shouldThrow(UnexpectedTypeException::class)->during('execute', [$subject, [], $promotion]);
     }
 
     public function it_does_not_apply_if_no_channel(OrderInterface $subject, PromotionInterface $promotion): void
