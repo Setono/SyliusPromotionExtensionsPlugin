@@ -6,6 +6,7 @@ namespace Setono\SyliusPromotionExtensionsPlugin\Promotion\Action;
 
 use function array_key_exists;
 use function count;
+use function Safe\uasort;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
@@ -160,7 +161,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             $units = \array_merge($units, $item->getUnits()->toArray());
         }
 
-        \uasort($units, function (OrderItemUnitInterface $a, OrderItemUnitInterface $b): int {
+        uasort($units, function (OrderItemUnitInterface $a, OrderItemUnitInterface $b): int {
             return $b->getTotal() <=> $a->getTotal();
         });
         /** @var OrderItemUnitInterface[] $units */

@@ -11,7 +11,7 @@ use function array_values;
 use function count;
 use function floor;
 use InvalidArgumentException;
-use function rsort;
+use function Safe\rsort;
 use Webmozart\Assert\Assert;
 
 final class MostExpensiveFirstDistributor implements MostExpensiveFirstDistributorInterface
