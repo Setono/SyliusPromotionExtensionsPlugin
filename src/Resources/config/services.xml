@@ -11,6 +11,19 @@
             <tag name="sylius.promotion_action" type="unit_fixed_price" label="setono_sylius_promotion_extensions.form.promotion_action.item_fixed_price" form-type="Sylius\Bundle\CoreBundle\Form\Type\Promotion\Action\ChannelBasedUnitFixedDiscountConfigurationType" />
         </service>
 
+        <service id="setono_sylius_promotion_extensions.promotion_action.units_fixed_price"
+                 class="Setono\SyliusPromotionExtensionsPlugin\Promotion\Action\UnitsFixedPricePromotionActionCommand">
+            <argument type="service" id="sylius.factory.adjustment" />
+            <argument type="service" id="sylius.promotion_filter.price_range" />
+            <argument type="service" id="sylius.promotion_filter.taxon" />
+            <argument type="service" id="sylius.promotion_filter.product" />
+            <argument type="service" id="setono_sylius_promotion_extensions.distributor.most_expensive_first" />
+            <tag name="sylius.promotion_action" type="units_fixed_price"
+                 label="setono_sylius_promotion_extensions.form.promotion_action.items_fixed_price"
+                 form-type="Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action\ChannelBasedUnitsFixedDiscountConfigurationType"
+            />
+        </service>
+
         <service id="setono_sylius_promotion_extensions.promotion_rule_checker.has_n_from_taxon" class="Setono\SyliusPromotionExtensionsPlugin\Promotion\Checker\Rule\HasNFromTaxonRuleChecker">
             <tag name="sylius.promotion_rule_checker" type="has_n_from_taxon" label="setono_sylius_promotion_extensions.form.promotion_rule.has_at_least_n_from_taxons" form-type="Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Rule\HasNFromTaxonConfigurationType" />
         </service>
@@ -19,5 +32,17 @@
             <argument type="service" id="sylius.form.type.data_transformer.taxons_to_codes" />
             <tag name="form.type" />
         </service>
+
+        <service id="setono_sylius_promotion_extensions.form.type.promotion_action.channel_based_units_fixed_discount_configuration"
+                 class="Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action\ChannelBasedUnitsFixedDiscountConfigurationType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_promotion_extensions.form.type.promotion_action.units_fixed_discount_configuration"
+                 class="Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action\UnitsFixedDiscountConfigurationType">
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_promotion_extensions.distributor.most_expensive_first" class="Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributor" />
     </services>
 </container>
