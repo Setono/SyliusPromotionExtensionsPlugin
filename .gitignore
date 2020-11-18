@@ -3,3 +3,4 @@
 /composer.lock
 
 /tests/Application/yarn.lock
+/.phpunit.result.cache
