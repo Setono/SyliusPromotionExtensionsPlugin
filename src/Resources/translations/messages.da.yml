@@ -3,7 +3,10 @@ setono_sylius_promotion_extensions:
         promotion_action:
             item_fixed_price: Fast pris for vare
             items_amount: Beløb på varer
-            items_fixed_price: Fast pris for partivarer
+            fixed_lot_price: Fast partipris
+            fixed_lot_price_configuration:
+                lot_size: Antal per parti
+                price_per_lot: Pris pr. parti
         promotion_rule:
             has_at_least_n_from_taxons: Har minimum n fra taxon
             has_n_from_taxon:

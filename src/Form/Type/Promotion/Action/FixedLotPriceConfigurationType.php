@@ -13,13 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 
-final class UnitsFixedDiscountConfigurationType extends AbstractType
+final class FixedLotPriceConfigurationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('amount', MoneyType::class, [
-                'label' => 'sylius.form.promotion_action.fixed_discount_configuration.amount',
+                'label' => 'setono_sylius_promotion_extensions.form.promotion_action.fixed_lot_price_configuration.price_per_lot',
                 'constraints' => [
                     new NotBlank(['groups' => ['sylius']]),
                     new Type(['type' => 'numeric', 'groups' => ['sylius']]),
@@ -27,7 +27,11 @@ final class UnitsFixedDiscountConfigurationType extends AbstractType
                 'currency' => $options['currency'],
             ])
             ->add('itemsAmount', IntegerType::class, [
-                'label' => 'setono_sylius_promotion_extensions.form.promotion_action.items_amount',
+                'label' => 'setono_sylius_promotion_extensions.form.promotion_action.fixed_lot_price_configuration.lot_size',
+                'constraints' => [
+                    new NotBlank(['groups' => ['sylius']]),
+                    new Type(['type' => 'numeric', 'groups' => ['sylius']]),
+                ],
             ])
             ->add('filters', PromotionFilterCollectionType::class, [
                 'label' => false,
@@ -47,6 +51,6 @@ final class UnitsFixedDiscountConfigurationType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'setono_sylius_promotion_extensions_promotion_action_units_fixed_discount_configuration';
+        return 'setono_sylius_promotion_extensions_promotion_action_fixed_lot_price_configuration';
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Promotion\Action;
 
-use function array_key_exists;
 use function count;
 use function Safe\uasort;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
@@ -18,9 +17,9 @@ use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionActionCommand
+final class FixedLotPricePromotionActionCommand extends UnitDiscountPromotionActionCommand
 {
-    public const TYPE = 'units_fixed_price';
+    public const TYPE = 'fixed_lot_price';
 
     /** @var FilterInterface */
     private $priceRangeFilter;
@@ -65,31 +64,32 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
             return false;
         }
 
-        if (!array_key_exists('amount', $configuration[$channelCode])
-            || !array_key_exists('itemsAmount', $configuration[$channelCode])
-        ) {
+        $channelConfiguration = $configuration[$channelCode];
+
+        if (!isset($channelConfiguration['amount'], $channelConfiguration['itemsAmount'])) {
             return false;
         }
-        $amount = $configuration[$channelCode]['amount'] ?? 0;
-        $itemsAmount = $configuration[$channelCode]['itemsAmount'] ?? 0;
+
+        $amount = (int) $channelConfiguration['amount'];
+        $itemsAmount = (int) $channelConfiguration['itemsAmount'];
         if (0 === $amount || 0 === $itemsAmount) {
             return false;
         }
 
-        $filteredItems = $this->getFilteredItems($subject, $configuration[$channelCode]);
-        if (0 === count($filteredItems)) {
+        $items = $this->getFilteredItems($subject, $channelConfiguration);
+        if (0 === count($items)) {
             return false;
         }
 
-        $expectedTotal = $this->getExpectedTotal($amount, $itemsAmount, $filteredItems);
-        $currentTotal = $this->getEligibleItemsTotal($filteredItems);
+        $expectedTotal = $this->getExpectedTotal($amount, $itemsAmount, $items);
+        $currentTotal = $this->getEligibleItemsTotal($items);
         // If the items total is already lower than expected discounted amount, return there
         if ($currentTotal <= $expectedTotal) {
             return false;
         }
 
         $discountAmount = $currentTotal - $expectedTotal;
-        $units = $this->getUnits($filteredItems);
+        $units = $this->getUnits($items);
         $unitsTotals = [];
         foreach ($units as $unit) {
             $unitsTotals[] = $unit->getTotal();
@@ -105,7 +105,7 @@ final class UnitsFixedPricePromotionActionCommand extends UnitDiscountPromotionA
     }
 
     /**
-     * @return array|OrderItemInterface[]
+     * @return OrderItemInterface[]
      */
     private function getFilteredItems(OrderInterface $order, array $configuration): array
     {
