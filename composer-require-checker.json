@@ -29,6 +29,9 @@
     "Sylius\\Component\\Promotion\\Checker\\Rule\\RuleCheckerInterface",
     "Sylius\\Component\\Promotion\\Exception\\UnsupportedTypeException",
     "Sylius\\Component\\Promotion\\Model\\PromotionInterface",
-    "Sylius\\Component\\Promotion\\Model\\PromotionSubjectInterface"
+    "Sylius\\Component\\Promotion\\Model\\PromotionSubjectInterface",
+    "Setono\\SyliusPromotionExtensionsPlugin\\Form\\Type\\Promotion\\Action\\ChannelBasedUnitsFixedDiscountConfigurationType",
+    "Setono\\SyliusPromotionExtensionsPlugin\\Form\\Type\\Promotion\\Action\\UnitsFixedDiscountConfigurationType",
+    "Setono\\SyliusPromotionExtensionsPlugin\\Promotion\\Action\\UnitsFixedPricePromotionActionCommand"
   ]
 }
