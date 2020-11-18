@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$product of method Setono\\\\SyliusPromotionExtensionsPlugin\\\\Promotion\\\\Checker\\\\Rule\\\\HasNFromTaxonRuleChecker\\:\\:productHasTaxon\\(\\) expects Sylius\\\\Component\\\\Core\\\\Model\\\\ProductInterface, Sylius\\\\Component\\\\Core\\\\Model\\\\ProductInterface\\|null given\\.$#"
+			count: 1
+			path: src/Promotion/Checker/Rule/HasNFromTaxonRuleChecker.php
+

@@ -1,9 +1,2 @@
-#setono_sylius_promotion_extensions_shop:
-#    resource: "@SetonoSyliusPromotionExtensionsPlugin/Resources/config/shop_routing.yml"
-#    prefix: /{_locale}
-#    requirements:
-#        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
-#
-#setono_sylius_promotion_extensions_admin:
-#    resource: "@SetonoSyliusPromotionExtensionsPlugin/Resources/config/admin_routing.yml"
-#    prefix: /admin
+acme_sylius_example:
+    resource: "@AcmeSyliusExamplePlugin/Resources/config/routes.yaml"

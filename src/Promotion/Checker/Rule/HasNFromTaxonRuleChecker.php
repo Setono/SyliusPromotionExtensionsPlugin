@@ -15,9 +15,6 @@ final class HasNFromTaxonRuleChecker implements RuleCheckerInterface
 {
     public const TYPE = 'has_n_from_taxon';
 
-    /**
-     * @throws UnsupportedTypeException
-     */
     public function isEligible(PromotionSubjectInterface $subject, array $configuration): bool
     {
         if (!isset($configuration['taxons'], $configuration['quantity'])) {
