@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action;
 
+use function Safe\class_alias;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Bundle\PromotionBundle\Form\Type\PromotionFilterCollectionType;
 use Symfony\Component\Form\AbstractType;
@@ -54,3 +55,5 @@ final class FixedLotPriceConfigurationType extends AbstractType
         return 'setono_sylius_promotion_extensions_promotion_action_fixed_lot_price_configuration';
     }
 }
+
+class_alias(FixedLotPriceConfigurationType::class, UnitsFixedDiscountConfigurationType::class);

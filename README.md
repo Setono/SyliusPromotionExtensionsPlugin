@@ -40,6 +40,10 @@ Will return true if the cart contains n or more products that have the given tax
 ### Unit fixed price
 You set a price that all matching products will cost no matter their original price.
 
+### Fixed lot price
+This is specially suited for 'x for y' promotions, i.e. '2 for $50'. You set a lot price (i.e. $50) and a lot size (i.e. 2)
+and then the promotion will distribute the discount among the eligible products in the cart.
+
 [ico-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/license

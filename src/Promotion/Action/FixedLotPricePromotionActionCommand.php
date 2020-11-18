@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusPromotionExtensionsPlugin\Promotion\Action;
 
 use function count;
+use function Safe\class_alias;
 use function Safe\uasort;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -170,3 +171,5 @@ final class FixedLotPricePromotionActionCommand extends UnitDiscountPromotionAct
         return $units;
     }
 }
+
+class_alias(FixedLotPricePromotionActionCommand::class, UnitsFixedPricePromotionActionCommand::class);
