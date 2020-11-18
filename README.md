@@ -4,7 +4,6 @@
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-github-actions]][link-github-actions]
-[![Quality Score][ico-code-quality]][link-code-quality]
 
 Adds common promotion rules and actions for you to use in Sylius.
 
@@ -12,14 +11,9 @@ Adds common promotion rules and actions for you to use in Sylius.
 
 ### Step 1: Download the plugin
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this plugin:
-
 ```bash
 $ composer require setono/sylius-promotion-extensions-plugin
 ```
-
-This command requires you to have Composer installed globally, as explained in the [installation chapter](https://getcomposer.org/doc/00-intro.md) of the Composer documentation.
-
 
 ### Step 2: Enable the plugin
 
@@ -50,8 +44,6 @@ You set a price that all matching products will cost no matter their original pr
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/v/unstable
 [ico-license]: https://poser.pugx.org/setono/sylius-promotion-extensions-plugin/license
 [ico-github-actions]: https://github.com/Setono/SyliusPromotionExtensionsPlugin/workflows/build/badge.svg
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusPromotionExtensionsPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/setono/sylius-promotion-extensions-plugin
 [link-github-actions]: https://github.com/Setono/SyliusPromotionExtensionsPlugin/actions
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusPromotionExtensionsPlugin

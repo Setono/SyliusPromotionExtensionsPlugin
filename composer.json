@@ -8,27 +8,27 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
-        "sylius/sylius": "^1.3"
+        "php": "^7.3",
+        "sylius/resource-bundle": "^1.6",
+        "symfony/config": "^4.4 || ^5.0",
+        "symfony/dependency-injection": "^4.4 || ^5.0",
+        "symfony/form": "^4.4 || ^5.0",
+        "symfony/http-kernel": "^4.4 || ^5.0",
+        "symfony/options-resolver": "^4.4 || ^5.0",
+        "symfony/validator": "^4.4 || ^5.0",
+        "thecodingmachine/safe": "^1.3",
+        "webmozart/assert": "^1.9"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.2",
-        "korbeil/phpstan-generic-rules": "^0.2.4",
         "phpspec/phpspec": "^6.2",
-        "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^0.12.29",
-        "phpstan/phpstan-doctrine": "^0.12.16",
-        "phpstan/phpstan-strict-rules": "^0.12.2",
-        "phpstan/phpstan-webmozart-assert": "^0.12.6",
-        "phpunit/phpunit": "^8.5",
+        "phpunit/phpunit": "^9.4",
         "roave/security-advisories": "dev-master",
-        "sylius-labs/coding-standard": "^3.1.3",
-        "symfony/browser-kit": "^4.4 || ^5.0",
+        "setono/code-quality-pack": "^1.4",
+        "sylius/sylius": "~1.8.0",
         "symfony/debug-bundle": "^4.4 || ^5.0",
         "symfony/dotenv": "^4.4 || ^5.0",
         "symfony/intl": "^4.4 || ^5.0",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.0"
+        "symfony/web-profiler-bundle": "^4.4 || ^5.0"
     },
     "config": {
         "sort-packages": true
@@ -53,11 +53,11 @@
     },
     "prefer-stable": true,
     "scripts": {
-        "analyse": "vendor/bin/phpstan analyse -c phpstan.neon -l max src",
-        "check-style": "vendor/bin/ecs check --ansi spec src",
-        "fix-style": "vendor/bin/ecs check --ansi spec src --fix",
-        "phpspec": "vendor/bin/phpspec run --ansi",
-        "phpunit": "vendor/bin/phpunit",
+        "analyse": "phpstan analyse -c phpstan.neon",
+        "check-style": "ecs check --ansi spec src",
+        "fix-style": "ecs check --ansi spec src --fix",
+        "phpspec": "phpspec run --ansi",
+        "phpunit": "phpunit",
         "test": [
             "@phpunit",
             "@phpspec"
