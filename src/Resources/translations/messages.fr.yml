@@ -3,7 +3,10 @@ setono_sylius_promotion_extensions:
         promotion_action:
             item_fixed_price: Prix fixé par produit
             items_amount: Nombre de produits
-            items_fixed_price: Prix fixé par lot de produits
+            fixed_lot_price: Prix fixé par lot de produits
+            fixed_lot_price_configuration:
+                lot_size: Lot size
+                price_per_lot: Price per lot
         promotion_rule:
             has_at_least_n_from_taxons: A au moins n produit(s) de certaines catégories
             has_n_from_taxon:

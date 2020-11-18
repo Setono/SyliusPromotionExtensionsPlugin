@@ -9,7 +9,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributor;
 use Setono\SyliusPromotionExtensionsPlugin\Distributor\MostExpensiveFirstDistributorInterface;
-use Setono\SyliusPromotionExtensionsPlugin\Promotion\Action\UnitsFixedPricePromotionActionCommand;
+use Setono\SyliusPromotionExtensionsPlugin\Promotion\Action\FixedLotPricePromotionActionCommand;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItem;
@@ -22,7 +22,7 @@ use Sylius\Component\Promotion\Model\PromotionSubjectInterface;
 use Sylius\Component\Resource\Exception\UnexpectedTypeException;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
-final class UnitsFixedPricePromotionActionCommandSpec extends ObjectBehavior
+final class FixedLotPricePromotionActionCommandSpec extends ObjectBehavior
 {
     public function let(
         FactoryInterface $adjustmentFactory,
@@ -37,7 +37,7 @@ final class UnitsFixedPricePromotionActionCommandSpec extends ObjectBehavior
 
     public function it_is_initializable(): void
     {
-        $this->shouldBeAnInstanceOf(UnitsFixedPricePromotionActionCommand::class);
+        $this->shouldBeAnInstanceOf(FixedLotPricePromotionActionCommand::class);
     }
 
     public function it_implements_promotion_action_command_interface(): void

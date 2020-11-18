@@ -10,12 +10,12 @@ use Sylius\Component\Currency\Model\CurrencyInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ChannelBasedUnitsFixedDiscountConfigurationType extends AbstractType
+final class ChannelBasedFixedLotPriceConfigurationType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'entry_type' => UnitsFixedDiscountConfigurationType::class,
+            'entry_type' => FixedLotPriceConfigurationType::class,
             'entry_options' => function (ChannelInterface $channel): array {
                 /** @var CurrencyInterface $currency */
                 $currency = $channel->getBaseCurrency();
