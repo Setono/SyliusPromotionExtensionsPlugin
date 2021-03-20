@@ -82,7 +82,8 @@ final class FixedLotPricePromotionActionCommand extends UnitDiscountPromotionAct
             return false;
         }
 
-        $expectedTotal = $this->getExpectedTotal($amount, $itemsAmount, $items);
+        $units = $this->getUnits($items);
+        $expectedTotal = $this->getExpectedTotal($amount, $itemsAmount, count($units));
         $currentTotal = $this->getEligibleItemsTotal($items);
         // If the items total is already lower than expected discounted amount, return there
         if ($currentTotal <= $expectedTotal) {
@@ -90,7 +91,6 @@ final class FixedLotPricePromotionActionCommand extends UnitDiscountPromotionAct
         }
 
         $discountAmount = $currentTotal - $expectedTotal;
-        $units = $this->getUnits($items);
         $unitsTotals = [];
         foreach ($units as $unit) {
             $unitsTotals[] = $unit->getTotal();
@@ -122,19 +122,17 @@ final class FixedLotPricePromotionActionCommand extends UnitDiscountPromotionAct
     /**
      * Returns the expected total for items. If we have 2 for $200, and 6 item units, we expect $600 as a result here
      */
-    private function getExpectedTotal(int $expectedAmount, int $itemsAmount, iterable $items): int
+    private function getExpectedTotal(int $amount, int $perItems, int $actualUnitsCount): int
     {
         // Since the promotion is registered as x products for y amount, calculate price per item
-        $amountPerItem = (int) \round($expectedAmount / $itemsAmount);
+        // @todo Maybe ceil than round?
+        $amountPerSingleItem = (int) \round($amount / $perItems);
 
-        // Return the price per item * items amount
-        $units = [];
-        /** @var OrderItemInterface $item */
-        foreach ($items as $item) {
-            $units = \array_merge($units, $item->getUnits()->toArray());
-        }
-
-        return $amountPerItem * count($units);
+        // (299, 3, 4) => 299 * intval(4 / 3) + 99,67 * (4 % 3) => 299 * 1 + 99,67 * 1 = 398,67
+        // (299, 3, 7) => 299 * intval(7 / 3) + 99,67 * (7 % 3) => 299 * 2 + 99,67 * 1 = 697,67
+        return $amount * (int) floor($actualUnitsCount / $perItems)
+            + $amountPerSingleItem * ($actualUnitsCount % $perItems)
+            ;
     }
 
     /**
