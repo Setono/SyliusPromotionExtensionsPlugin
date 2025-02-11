@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action;
 
-use function Safe\class_alias;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Bundle\PromotionBundle\Form\Type\PromotionFilterCollectionType;
 use Symfony\Component\Form\AbstractType;

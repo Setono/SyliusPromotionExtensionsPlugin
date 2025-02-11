@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusPromotionExtensionsPlugin\Form\Type\Promotion\Action;
 
-use function Safe\class_alias;
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Currency\Model\CurrencyInterface;
